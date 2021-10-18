@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.2)  17 OCT 2021 20:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.2)  17 OCT 2021 22:19
 entering extended mode
-**./led_fader.tex
-(led_fader.tex
+**./open-circuit-ammeter.tex
+(open-circuit-ammeter.tex
 LaTeX2e <2020-10-01> patch level 2
 L3 programming layer <2020-10-27> xparse <2020-03-03>
 ("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls"
@@ -483,23 +483,23 @@ nd-pdftex.def"
 File: l3backend-pdftex.def 2020-09-24 L3 backend support: PDF output (pdfTeX)
 \l__kernel_color_stack_int=\count274
 \l__pdf_internal_box=\box58
-) (led_fader.aux)
-\openout1 = `led_fader.aux'.
+) (open-circuit-ammeter.aux)
+\openout1 = `open-circuit-ammeter.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
 
 ("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-
 pdf.mkii"
@@ -519,8 +519,50 @@ pdf.mkii"
 ("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/latex/epstopdf-pkg\epst
 opdf-base.sty"
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/generic/infwarerr\infwa
+rerr.sty"
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/latex/grfext\grfext.sty
+"
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+
+("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvdefinekeys\kv
+definekeys.sty"
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+))
+("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/latex/kvoptions\kvoptio
+ns.sty"
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+
+("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/generic/ltxcmds\ltxcmds
+.sty"
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/generic/kvsetkeys\kvset
+keys.sty"
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pdftexcmds\pdft
+excmds.sty"
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+("C:\Users\Raghav\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\iftex.sty
+"
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 7.
@@ -528,27 +570,42 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 7.
 \realshift=\dimen272
 \realshift=\dimen273
-Missing character: There is no ; in font nullfont!
+\absvshift=\dimen274
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 16.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 16.
+\absvshift=\dimen275
+\absvshift=\dimen276
  [1
 
-{C:/Users/Raghav/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (led_fader
-.aux) ) 
+{C:/Users/Raghav/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(open-circuit-ammeter.aux) ) 
 Here is how much of TeX's memory you used:
- 24789 strings out of 479798
- 645907 string characters out of 2867054
- 1043246 words of memory out of 3000000
- 41534 multiletter control sequences out of 15000+200000
- 535088 words of font info for 29 fonts, out of 3000000 for 9000
+ 25510 strings out of 479798
+ 660462 string characters out of 2867054
+ 1074750 words of memory out of 3000000
+ 42214 multiletter control sequences out of 15000+200000
+ 537838 words of font info for 38 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 122i,6n,124p,432b,905s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Raghav/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmmi10.pfb><C:/Users/Raghav/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb><C:/Users/Raghav/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Raghav/AppData/Local/Pr
-ograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on led_fader.pdf (1 page, 34741 bytes).
+ 122i,6n,124p,442b,848s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Raghav/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/Raghav/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/Raghav/AppData
+/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/
+Raghav/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.p
+fb><C:/Users/Raghav/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi7.pfb><C:/Users/Raghav/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmmi9.pfb><C:/Users/Raghav/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Raghav/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Raghav/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/Rag
+hav/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
+><C:/Users/Raghav/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmsy9.pfb>
+Output written on open-circuit-ammeter.pdf (1 page, 91109 bytes).
 PDF statistics:
- 25 PDF objects out of 1000 (max. 8388607)
+ 53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
