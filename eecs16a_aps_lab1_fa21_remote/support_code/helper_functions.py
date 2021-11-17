@@ -39,19 +39,65 @@ def cross_correlation(stationary_signal, sliding_signal):
     return entire_corr_vec[len(sliding_signal)-1: len(sliding_signal)-1 + len(sliding_signal)]
     # old implementation
     # return np.fft.ifft(np.fft.fft(stationary_signal) * np.fft.fft(sliding_signal).conj()).real
+    
+def cross_corr_demo():
+    # Here we repeat the above example for a three-period case
 
-def cross_corr_demo_1():
     # Input signals for which to compute the cross-correlation
-    signal1 = np.array([1, 2, 3, 2, 1, 0]) #sliding
-    signal2 = np.array([3, 1, 0, 0, 0, 1]) #inf periodic stationary
-    print('input stationary_signal: '+str(signal2))
-    print('input sliding_signal: '+str(signal1))
+    # Make signals periodic with the numpy.tile function
+    Nrepeat = 3
+    signal1_base = np.array([1, 2, 3, 2, 1, 0])
+    signal2_base = np.array([3, 1, 0, 0, 0, 1])
+    zero_pad = np.zeros(len(signal2_base))
+    signal2 = np.hstack((zero_pad, signal2_base, zero_pad)).astype(int) 
+    signal1 = np.tile(signal1_base, Nrepeat)
+    print('periodic stationary signal:'+ '[ ... ' + ' '.join([str(elem) for elem in signal1]) + ' ...]')
+    print('sliding signal: '+str(signal2_base))
 
     # Use the numpy.roll function to shift signal2 in a circular way
     # Use the numpy.correlate function to convolute signal1 and signal2
     # Index [0] is used to convert a 1x1 array into a number
-    corr = [np.correlate(signal2, np.roll(signal1,k))[0] for k in range(len(signal2))]
-    print( 'cross-correlation:'+str(corr))
+    corr = [np.correlate(signal1, np.roll(signal2,k)).astype(int)[0] for k in range(len(signal2))]
+    print('periodic cross-correlation:'+ '[ ... ' + ' '.join([str(elem) for elem in corr]) + ' ...]')
+
+    # Plot each operation required to compute the cross-correlation
+    plt.figure(figsize=(12, 24))
+    #subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
+    
+    #signal2 = np.roll(signal2, -len(signal2_base))
+    
+    for i in range(6, 12):
+        plt.subplot(6,1,i-5)
+        plt.subplots_adjust(hspace = 1);
+        plt.plot(signal1, 'bo-', label='stationary')
+        plt.plot(signal2, 'rx-', label='sliding')
+        plt.xlim(0, 17)
+        plt.ylim(0, 4)
+        plt.legend(loc = 'upper left')
+        plt.title('Computed cross-correlation[%d]=%d\n%s\n%s'%(i, np.dot(signal1_base, signal2_base), str(signal2), str(signal1)))
+        signal2 = np.roll(signal2, 1)
+        signal2_base = np.roll(signal2_base, 1)
+
+    # Adjust subplot spacing
+    #plt.tight_layout()
+    plt.figure(figsize=(12, 6))
+    plt.plot(corr,'ko-')
+    plt.xlim(0, 17)
+    plt.ylim(0, 15)
+    plt.title('Periodic Cross-correlation')
+
+def cross_corr_demo_1():
+    # Input signals for which to compute the cross-correlation
+    signal1 = np.array([1, 2, 3, 2, 1, 0]*3) #inf periodic stationary
+    signal2 = np.array([3, 1, 0, 0, 0, 1]) #sliding
+    print('input sliding signal: '+str(signal2))
+    print('input stationary signal: '+str(signal1))
+
+    # Use the numpy.roll function to shift signal2 in a circular way
+    # Use the numpy.correlate function to convolute signal1 and signal2
+    # Index [0] is used to convert a 1x1 array into a number
+    corr = [np.correlate(signal1, np.roll(signal2,k))[0] for k in range(len(signal2))]
+    print('cross-correlation:'+str(corr))
 
     # Plot each operation required to compute the cross-correlation
     plt.figure(figsize=(12,6))
@@ -60,13 +106,13 @@ def cross_corr_demo_1():
     for i in range(6):
         plt.subplot(2,3,i+1)
         plt.subplots_adjust(hspace = 1);
-        plt.plot(signal2, 'rx-', label='stationary')
-        plt.plot(signal1, 'bo-', label='sliding')
+        plt.plot(signal2, 'rx-', label='sliding')
+        plt.plot(signal1, 'bo-', label='stationary')
         plt.xlim(0, 5)
         plt.ylim(0, 4)
         plt.legend(loc = 'upper left')
         plt.title('Computed cross-correlation(%d)=%d\n%s\n%s'%(i, np.dot(signal1, signal2), str(signal2), str(signal1)))
-        signal2 = np.roll(signal2, -1)
+        signal2 = np.roll(signal2, 1)
 
     # Adjust subplot spacing
     #plt.tight_layout()
@@ -81,41 +127,44 @@ def cross_corr_demo_2():
 
     # Input signals for which to compute the cross-correlation
     # Make signals periodic with the numpy.tile function
-    Nrepeat = 2
+    Nrepeat = 3
     signal1 = np.array([1, 2, 3, 2, 1, 0])
+    signal2_base = np.array([3, 1, 0, 0, 0, 1])
+    zero_pad = np.zeros(len(signal2_base))
+    signal2 = np.hstack((zero_pad, signal2_base, zero_pad)).astype(int) 
     signal1 = np.tile(signal1, Nrepeat)
-    signal2 = np.array([3, 1, 0, 0, 0, 1])
-    signal2 = np.tile(signal2, Nrepeat)
-    print('input stationary signal: '+str(signal2))
-    print('input sliding signal: '+str(signal1))
+    print('input stationary signal: '+str(signal1))
+    print('input sliding signal: '+str(signal2_base))
 
     # Use the numpy.roll function to shift signal2 in a circular way
     # Use the numpy.correlate function to convolute signal1 and signal2
     # Index [0] is used to convert a 1x1 array into a number
-    corr = [np.correlate(signal2, np.roll(signal1,k))[0] for k in range(len(signal2))]
-    print( 'cross-correlation:'+str(corr))
+    corr = [np.correlate(signal1, np.roll(signal2,k)).astype(int)[0] for k in range(len(signal2))]
+    print('cross-correlation:'+str(corr[6:12]))
 
     # Plot each operation required to compute the cross-correlation
-    plt.figure(figsize=(12,12))
+    plt.figure(figsize=(36, 24))
     #subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
-
-    for i in range(12):
-        plt.subplot(4,3,i+1)
+    
+    #signal2 = np.roll(signal2, -len(signal2_base))
+    
+    for i in range(6, 12):
+        plt.subplot(3,6,i+1)
         plt.subplots_adjust(hspace = 1);
         plt.plot(signal1, 'bo-', label='sliding')
         plt.plot(signal2, 'rx-', label='stationary')
-        plt.xlim(0, 11)
+        plt.xlim(0, 17)
         plt.ylim(0, 4)
         plt.legend(loc = 'upper left')
-        plt.title('Computed cross-correlation(%d)=%d\n%s\n%s'%(i, np.dot(signal1, signal2), str(signal2), str(signal1)))
-        signal2 = np.roll(signal2, -1)
+        #plt.title('Computed cross-correlation(%d)=%d\n%s\n%s'%(i, np.dot(signal1, signal2), str(signal2), str(signal1)))
+        signal2 = np.roll(signal2, 1)
 
     # Adjust subplot spacing
     #plt.tight_layout()
     plt.figure()
     plt.plot(corr,'ko-')
-    plt.xlim(0, 11)
-    plt.ylim(0, 28)
+    plt.xlim(6, 12)
+    plt.ylim(0, 15)
     plt.title('Cross-correlation (two-period)')
 
 def test_correlation_plot(signal1, signal2, lib_result, your_result):
@@ -344,7 +393,10 @@ def pltBeacons(delay_samples0,delay_samples1,delay_samples2):
     plt.draw()
 
 def sliderPlots():
-    interact(pltBeacons, delay_samples0 = (-500,500,10), delay_samples1 = (-500,500,10), delay_samples2 = (-500,500,10))
+	w0=widgets.IntSlider(min=-500, max=500, step=10, style={'description_width': 'initial'})
+	w1=widgets.IntSlider(min=-500, max=500, step=10, style={'description_width': 'initial'})
+	w2=widgets.IntSlider(min=-500, max=500, step=10, style={'description_width': 'initial'})
+	interact(pltBeacons, delay_samples0 = w0, delay_samples1 = w1, delay_samples2 = w2)
 
 
 
@@ -398,13 +450,13 @@ def plot_average_multiple_signals(beacon_num=0):
 
     axarr[0].plot(np.abs(cs[beacon_num]))
     [axarr[0].axvline(x=line, color = "red", linestyle='--') for line in period_ticks]
-    axarr[0].set_title('2.5 sec Recording of Beacon 1 After Separation\n(No Averaging)')
+    axarr[0].set_title('Cross-Correlation of 2.5 sec Recording of Beacon 1 with Signal After Separation\n(No Averaging)')
 
 
     axarr[1].plot(avgs[beacon_num])
     axarr[1].axvline(x=period_ticks[0], color = "red", linestyle='--', label='period start')
     axarr[1].axvline(x=period_ticks[1], color = "red", linestyle='--')
-    axarr[1].set_title('Averaged & Centered Periodic Output for Beacon 1')
+    axarr[1].set_title('Averaged & Centered Periodic Cross-Correlation')
     plt.legend()
 
     stacked_cs = np.abs(cs[beacon_num])[:(len(cs[beacon_num])//period_len)*period_len].reshape(-1, period_len)
@@ -461,7 +513,7 @@ def correlation_plots(offset):
 
     # plot stationary and sliding signal
     ax1.set_xlim(-10,10)
-    ax1.plot(stationary_coord, stationary_sig, label = "infinite periodic stationary signal")
+    ax1.plot(stationary_coord, stationary_sig, label = "periodic stationary signal")
     ax1.plot(sliding_coord+offset, sliding_sig, color="orange", label = "sliding signal")
     ax1.plot(np.arange(-10-8,-1)+offset, [0]*17, color="orange")
     ax1.plot(np.arange(2,11+8)+offset, [0]*17, color="orange")
@@ -475,7 +527,7 @@ def correlation_plots(offset):
     x = np.arange(-2,3,1)
     ax2.set_xlim(-10,10)
     ax2.set_ylim(-2, 2)
-    ax2.plot(x, corr, label="infinitely periodic cross correlation", color="g")
+    ax2.plot(x, corr, label="periodic cross correlation", color="g")
     index = (offset+2)%4 - 2
     ax2.scatter(index, corr[index+2], color = "r")
     ax2.axvline(index, color = "black", ls="--")
@@ -483,7 +535,7 @@ def correlation_plots(offset):
     ax2.legend()
     ax2.set_title("cross_correlation([-1, 0, 1, 0, -1], [-0.5, 0, 0.5, 0, -0.5])")
 
-    ax1.set_title("Infinite Periodic Linear Cross Correlation\nCorr Val at offset "+str(offset)+" is "+str(corr[index+2]))
+    ax1.set_title("Periodic Linear Cross Correlation\nCorr Val at offset "+str(offset)+" is "+str(corr[index+2]))
     plt.show()
 
 def inf_periodic_cross_corr():
